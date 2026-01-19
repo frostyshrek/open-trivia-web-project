@@ -1,0 +1,93 @@
+.home {
+  min-height: calc(100vh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 32px 16px;
+}
+
+.home-card {
+  width: 100%;
+  max-width: 920px;
+  border-radius: 16px;
+  padding: 28px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-title {
+  margin-bottom: 6px;
+}
+
+.home-subtitle {
+  opacity: 0.9;
+  margin-bottom: 22px;
+}
+
+.home-actions {
+  display: grid;
+  gap: 18px;
+}
+
+.home-action {
+  display: grid;
+  gap: 12px;
+}
+
+.home-action-text {
+  opacity: 0.92;
+}
+
+.home-divider {
+  height: 1px;
+  width: 100%;
+  background: rgba(255, 255, 255, 0.10);
+  margin: 6px 0;
+}
+
+.home-open {
+  display: grid;
+  gap: 10px;
+}
+
+.home-label {
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.home-select {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  outline: none;
+}
+
+.home-select:disabled {
+  opacity: 0.6;
+}
+
+.home-open-buttons {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 6px;
+}
+
+.home-meta {
+  margin-top: 10px;
+  opacity: 0.92;
+}
+
+.home-meta-label {
+  opacity: 0.75;
+  margin-right: 6px;
+}
+
+@media (min-width: 768px) {
+  .home-actions {
+    gap: 22px;
+  }
+}

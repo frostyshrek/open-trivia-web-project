@@ -1,0 +1,31 @@
+.link {
+  color: var(--primary-color);
+  text-decoration: underline;
+  cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
+}
+
+/* Size variants */
+.link.normal {
+  font-size: auto;
+}
+
+/* Hover */
+.link:hover {
+  text-decoration: underline;
+}
+
+/* Active (Click) */
+.link:active {
+  text-decoration: underline;
+  color: var(--secondary-color);
+}
+
+/* Disabled state */
+.link.disabled {
+  color: var(--info-1-color);
+  cursor: not-allowed;
+  text-decoration: none;
+  pointer-events: none;
+}

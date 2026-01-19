@@ -1,0 +1,73 @@
+@import url('https://fonts.googleapis.com/css2?family=Outfit:wght@100..900&display=swap');
+
+:root {   
+  font-family: "Outfit";
+  line-height: 1.5;
+
+  font-size: 18px;
+
+  color-scheme: light dark;
+  color: var(--primary-color);
+  background-color: var(--background-dark-color);
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  scroll-behavior: smooth;
+}
+
+:root {
+  /* Layout Variables */
+  --navbar-height: 100px;
+  --navbar-height-mobile: 60px;
+  --footer-height: 100px;
+
+  /* Color Variables */
+  --primary-color: #F9F9F9;
+  --secondary-color: #717171;
+  --tertiary-color: #111111;
+
+  --primary-light-color: #111111;
+  --tertiary-light-color: #F9F9F9;
+
+  --background-light-color: #F9F9F9;
+  --background-dark-color: #130068;
+
+  --info-1-color: #263238;
+  --info-2-color: #717171;
+}
+
+body {
+  margin: 0;
+  padding :0;
+  display: flex;
+  place-items: center;
+  min-width: 375px;
+  min-height: 100vh;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #root {
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* @media (prefers-color-scheme: light) {
+  :root {
+    color: #213547;
+    background-color: #ffffff;
+  }
+  a:hover {
+    color: #747bff;
+  }
+  button {
+    background-color: #f9f9f9;
+  }
+} */

@@ -1,0 +1,118 @@
+/* Base button style */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 0 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  font-size: 18px;
+
+  color: var(--primary-color);
+  background-color: transparent;
+  cursor: pointer;
+  border: 2px solid var(--primary-color);
+  transition: background-color 0.2s, opacity 0.2s;
+
+}
+
+/* Size variants */
+.btn.normal {
+  height: 56px;
+  font-size: 16px;
+}
+
+.btn.medium {
+  height: 48px;
+  font-size: 14px;
+}
+
+.btn.small {
+  height: 32px;
+  font-size: 13px;
+  padding: 0 16px;
+}
+
+/* Font Size */
+
+.btn.body {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}
+
+.btn.subheading {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+.btn.headline-1 {
+  font-size: 64px;
+  line-height: 76px;
+  font-weight: 600;
+}
+
+.btn.headline-2 {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 600;
+}
+
+.btn.headline-3 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+/* Icon alignment */
+.btn .icon-left {
+  margin-right: 8px;
+}
+
+.btn .icon-right {
+  margin-left: 8px;
+}
+
+/* States */
+.btn:hover {
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+}
+
+.btn:active {
+  background-color: var(--primary-color);
+  color: var(--tertiary-color);
+}
+
+.btn.loading {
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.btn.disabled,
+.btn:disabled {
+  background-color: #F5F7FA;
+  color: #ABBED1;
+  cursor: not-allowed;
+}
+
+/* Loading spinner (optional if using icons)
+.btn.loading::after {
+  content: "";
+  border: 2px solid transparent;
+  border-top: 2px solid white;
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  margin-left: 8px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+} */

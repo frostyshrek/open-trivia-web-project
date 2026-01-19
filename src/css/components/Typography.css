@@ -1,0 +1,40 @@
+/* Font weight presets */
+.font-regular {
+  font-weight: 400;
+}
+
+.font-semibold {
+  font-weight: 600;
+}
+
+/* Headline styles */
+.headline-1 {
+  font-size: 64px;
+  line-height: 76px;
+  font-weight: 600;
+}
+
+.headline-2 {
+  font-size: 36px;
+  line-height: 44px;
+  font-weight: 600;
+}
+
+.headline-3 {
+  font-size: 28px;
+  line-height: 36px;
+  font-weight: 600;
+}
+
+.subheading {
+  font-size: 20px;
+  line-height: 28px;
+  font-weight: 600;
+}
+
+/* Body text */
+.body-1 {
+  font-size: 18px;
+  line-height: 28px;
+  font-weight: 400;
+}

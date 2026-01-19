@@ -1,0 +1,38 @@
+/* Container that sits behind your content */
+.abg-root {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+/* Optional soft fade at top/bottom of the whole layer */
+.abg-layer {
+  position: absolute;
+  inset: 0;
+  mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0%, black 14%, black 86%, transparent 100%);
+}
+
+.abg-item {
+  position: absolute;
+  transform: translateY(0) rotate(var(--abg-rotate, 0deg));
+  animation: abg-scroll-up calc(var(--abg-duration, 30s) * 0.6) linear infinite;
+  animation-delay: var(--abg-delay, 0s);
+  will-change: transform, opacity;
+  filter: saturate(0) brightness(0.8);
+}
+
+@keyframes abg-scroll-up {
+  0%   { transform: translateY(0) rotate(var(--abg-rotate, 0deg));    opacity: 0; }
+  10%  { opacity: var(--abg-alpha, 0.08); }
+  90%  { opacity: var(--abg-alpha, 0.08); }
+  100% { transform: translateY(-120vh) rotate(var(--abg-rotate, 0deg)); opacity: 0; }
+}
+
+/* Reduced motion */
+/* @media (prefers-reduced-motion: reduce) {
+  .abg-item { animation: none; }
+} */
+
