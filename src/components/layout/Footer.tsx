@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer className="footer">
       <div className="footer-bottom">
-        © 2026 Open-Trivia Project.
+        © 2026 Open-Trivia Project by frostyshrek.
       </div>
     </footer>
   );

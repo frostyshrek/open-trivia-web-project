@@ -1,0 +1,75 @@
+.cp-root {
+  display: grid;
+  gap: 8px;
+  position: relative;
+}
+
+.cp-label {
+  opacity: 0.9;
+  font-size: 0.95rem;
+}
+
+.cp-button {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(0, 0, 0, 0.25);
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+  text-align: left;
+}
+
+.cp-button:focus-visible {
+  outline: 2px solid rgba(255,255,255,0.35);
+  outline-offset: 2px;
+}
+
+.cp-chevron {
+  opacity: 0.85;
+  transition: transform 120ms ease;
+}
+
+.cp-chevron.open {
+  transform: rotate(180deg);
+}
+
+.cp-menu {
+  position: absolute;
+  top: calc(100% + 8px);
+  left: 0;
+  right: 0;
+  z-index: 20;
+
+  border-radius: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(20, 20, 24, 0.96);
+  backdrop-filter: blur(8px);
+  box-shadow: 0 20px 60px rgba(0,0,0,0.5);
+
+  overflow: hidden;
+}
+
+.cp-item {
+  width: 100%;
+  padding: 12px 12px;
+  background: transparent;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  text-align: left;
+  opacity: 0.92;
+}
+
+.cp-item:hover {
+  background: rgba(255,255,255,0.07);
+  opacity: 1;
+}
+
+.cp-item.active {
+  background: rgba(255,255,255,0.10);
+  opacity: 1;
+}

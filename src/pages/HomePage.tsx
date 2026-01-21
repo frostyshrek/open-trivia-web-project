@@ -1,44 +1,35 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom';
 
 import Footer from 'src/components/layout/Footer';
+
+import CategoryPicker from 'src/components/ui/CategoryPicker';
+import Modal from 'src/components/ui/Modal';
 
 import Button from 'src/components/presets/Button';
 import { Headline2, Subheading, Body1 } from 'src/components/presets/Typography';
 
 import 'src/css/pages/HomePage.css';
 
-type SavedGame = {
-  id: string;
-  title: string;
-  updatedAt: number; // unix ms
-};
-
-const STORAGE_KEY = 'trivia_saved_games';
-
-function loadSavedGames(): SavedGame[] {
-  try {
-    const raw = localStorage.getItem(STORAGE_KEY);
-    if (!raw) return [];
-    const parsed = JSON.parse(raw) as SavedGame[];
-    return Array.isArray(parsed) ? parsed : [];
-  } catch {
-    return [];
-  }
-}
-
-function formatDate(ms: number) {
-  try {
-    return new Date(ms).toLocaleString();
-  } catch {
-    return '';
-  }
-}
+import {
+  type SavedGame,
+  saveSavedGames,
+  loadSavedGames,
+  formatDate,
+} from 'src/types/game';
 
 const HomePage: React.FC = () => {
   const navigate = useNavigate();
+  const location = useLocation();
+
   const [savedGames, setSavedGames] = useState<SavedGame[]>(() => loadSavedGames());
   const [selectedId, setSelectedId] = useState<string>('');
+
+  const [deleteOpen, setDeleteOpen] = useState(false);
+
+  useEffect(() => {
+    setSavedGames(loadSavedGames());
+  }, [location.key]);
 
   const selectedGame = useMemo(
     () => savedGames.find((g) => g.id === selectedId) || null,
@@ -58,24 +49,38 @@ const HomePage: React.FC = () => {
 
   const handleOpenEdit = () => {
     if (!selectedGame) return;
-    navigate(`/edit/${selectedGame.id}`);
+    navigate(`/game/${selectedGame.id}/edit`);
   };
 
   const handleDelete = () => {
     if (!selectedGame) return;
-    const ok = confirm(`Delete "${selectedGame.title}"? This can't be undone.`);
-    if (!ok) return;
+    setDeleteOpen(true);
+  };
 
-    const next = savedGames.filter((g) => g.id !== selectedGame.id);
+  const confirmDelete = () => {
+  if (!selectedGame) return;
+
+  const next = savedGames.filter((g) => g.id !== selectedGame.id);
     setSavedGames(next);
     setSelectedId('');
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(next));
+    saveSavedGames(next);
+    setDeleteOpen(false);
   };
 
+  const sortedGames = useMemo(
+    () => savedGames.slice().sort((a, b) => b.updatedAt - a.updatedAt),
+    [savedGames]
+  );
+
+  const selectedIndex = useMemo(() => {
+    if (!selectedId) return -1;
+    return sortedGames.findIndex((g) => g.id === selectedId);
+  }, [sortedGames, selectedId]);
+
   useEffect(() => {
-      document.title = "Home | Open-Trivia";
-    }, []);
+    document.title = 'Home | Open-Trivia';
+  }, []);
 
   return (
     <>
@@ -107,29 +112,23 @@ const HomePage: React.FC = () => {
               </Body1>
 
               <div className="home-open">
-                <label className="home-label" htmlFor="savedGame">
-                  Saved boards
-                </label>
-
-                <select
-                  id="savedBoard"
-                  className="home-select"
-                  value={selectedId}
-                  onChange={(e) => setSelectedId(e.target.value)}
-                  disabled={!hasGames}
-                >
-                  <option value="">
-                    {hasGames ? 'Select a board…' : 'No saved boards found'}
-                  </option>
-                  {savedGames
-                    .slice()
-                    .sort((a, b) => b.updatedAt - a.updatedAt)
-                    .map((g) => (
-                      <option key={g.id} value={g.id}>
-                        {g.title} • {formatDate(g.updatedAt)}
-                      </option>
-                    ))}
-                </select>
+                {hasGames ? (
+                  <CategoryPicker
+                    label=""
+                    value={selectedIndex}
+                    options={sortedGames.map((g, idx) => ({
+                      value: idx,
+                      label: `${g.title} • ${formatDate(g.updatedAt)}`,
+                    }))}
+                    onChange={(idx) => {
+                      setSelectedId(sortedGames[idx]?.id ?? '');
+                    }}
+                  />
+                ) : (
+                  <div className="home-no-saves">
+                    <Body1>No saved boards found</Body1>
+                  </div>
+                )}
 
                 <div className="home-open-buttons">
                   <Button
@@ -158,7 +157,8 @@ const HomePage: React.FC = () => {
                 {selectedGame && (
                   <div className="home-meta">
                     <Body1>
-                      <span className="home-meta-label">Selected:</span> {selectedGame.title}
+                      <span className="home-meta-label">Selected:</span>{' '}
+                      {selectedGame.title}
                     </Body1>
                     <Body1>
                       <span className="home-meta-label">Last updated:</span>{' '}
@@ -171,6 +171,22 @@ const HomePage: React.FC = () => {
           </div>
         </section>
       </main>
+
+      <Modal
+        open={deleteOpen}
+        title={selectedGame ? `Delete "${selectedGame.title}"?` : 'Delete board?'}
+        onClose={() => setDeleteOpen(false)}
+        footer={
+          <>
+            <Button label="Cancel" size="medium" onClick={() => setDeleteOpen(false)} />
+            <Button label="Delete" size="medium" onClick={confirmDelete} />
+          </>
+        }
+      >
+        <Body1>
+          This will permanently remove the saved board from this browser. This can’t be undone.
+        </Body1>
+      </Modal>
 
       <Footer />
     </>
