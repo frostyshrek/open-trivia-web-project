@@ -358,3 +358,60 @@
     box-shadow: 0 0 0 rgba(255,255,255,0);
   }
 }
+
+/* Large Question / Answer Modal */
+.pgp-question-modal {
+  max-width: 900px;
+  width: min(92vw, 900px);
+}
+
+/* Mobile: almost full screen */
+@media (max-width: 768px) {
+  .pgp-question-modal {
+    width: 100vw;
+    max-width: 100vw;
+    height: 100vh;
+    border-radius: 0;
+  }
+}
+
+/* Question / Answer content */
+.pgp-q {
+  display: grid;
+  gap: 18px;
+}
+
+.pgp-q-label {
+  font-size: 1.05rem;
+  font-weight: 800;
+  opacity: 0.85;
+}
+
+.pgp-q-card {
+  padding: 22px 24px;
+  border-radius: 18px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.pgp-q-card > * {
+  font-size: 1.35rem;
+  line-height: 1.6;
+}
+
+/* Answer slightly emphasized */
+.pgp-q-card + .pgp-q-card {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Mobile readability */
+@media (max-width: 768px) {
+  .pgp-q-card > * {
+    font-size: 1.2rem;
+  }
+}
+
+.pgp-award button {
+  min-height: 48px;
+  font-size: 1rem;
+}

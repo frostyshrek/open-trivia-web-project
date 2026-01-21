@@ -411,6 +411,7 @@ const PlayGamePage: React.FC = () => {
             )}
           </>
         }
+        className="pgp-question-modal"
       >
         {selectedCell && (
           <div className="pgp-q">
