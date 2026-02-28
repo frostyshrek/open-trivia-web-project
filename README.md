@@ -1,73 +1,102 @@
-# React + TypeScript + Vite
+## Deployment
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Deployed on Cloudflare Pages:
+- Link : https://open-trivia-web-project.pages.dev/
+---
 
-Currently, two official plugins are available:
+# Open-Trivia
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+A modern Jeopardy-style trivia board builder and game runner built with **React + TypeScript + Vite**.
 
-## React Compiler
+Create custom trivia boards, edit questions with images, and play locally with up to 4 teams — complete with scoring, fullscreen mode, and winner animations.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+---
 
-## Expanding the ESLint configuration
+## Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+### 🛠 Create & Edit Boards
+- Custom board dimensions (categories × questions)
+- Points auto-increment by row
+- Add:
+  - Question / description
+  - Answer
+  - Optional image
+- Mobile-friendly editor
+- Unsaved changes warning before leaving
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+### Play Mode
+- 1–4 teams with custom names
+- Random first turn
+- Turn logic:
+  - Correct team keeps turn
+  - Steal mechanic supported
+  - If no team answers → turn cycles
+- Live scoreboard
+- Fullscreen mode
+- Reveal answer flow
+- End-game leaderboard
+- Winner confetti animation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+### Mobile Optimized
+- Category picker for smaller screens
+- Vertical scroll layout
+- Large, readable question modal
+- Tap-friendly controls
+
+---
+
+## Tech Stack
+
+- React
+- TypeScript
+- Vite
+- React Router
+- LocalStorage (for board persistence, its making maintaining the website completely free)
+- Custom CSS (no heavy UI frameworks)
+
+---
+
+## Security Notes
+
+- All data is stored locally in `localStorage`
+- No backend or authentication required
+- User input is rendered as plain text (React automatically escapes it)
+- Safe to deploy as a static site
+
+---
+
+## Project Structure
+
+```
+src/
+  pages/
+    HomePage.tsx
+    GameEditorPage.tsx
+    PlayGamePage.tsx
+  components/
+    presets/
+    layout/
+    ui/
+  hooks/
+  types/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+---
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## Future Improvements
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+- Sound effects toggle
+- Question timer mode
+- TV / Presentation mode
+- Shareable board export
+- Optional backend for online multiplayer
+
+---
+
+## License
+
+MIT License
